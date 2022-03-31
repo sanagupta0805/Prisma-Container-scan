@@ -13,8 +13,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build the image
-        run: docker build -t nginx:latest .
-
+        run: FROM imiell/bad-dockerfile:latest" > Dockerfile
+             docker build -t test/test-image:0.1 .
+        
       - name: Prisma Cloud image scan
         id: scan
         uses: PaloAltoNetworks/prisma-cloud-scan@v1
