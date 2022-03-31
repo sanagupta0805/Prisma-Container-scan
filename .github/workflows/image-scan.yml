@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build the image
-        run: docker build -t ./images/Dockerfile .
+        run: docker build -f ./images/Dockerfile .
                   
       - name: Prisma Cloud image scan
         id: scan
