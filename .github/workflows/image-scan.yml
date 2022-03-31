@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build the image
-        run: FROM imiell/bad-dockerfile:latest" > Dockerfile
+        run: FROM Dockerfile
              docker build -t test/test-image:0.1 .
         
       - name: Prisma Cloud image scan
