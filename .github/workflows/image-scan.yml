@@ -14,8 +14,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build the image
-        #run: docker build -f ./images/Dockerfile .  
-        run: docker build --no-cache -t test-image:0.1 .
+        run: docker build -f ./images/Dockerfile . > sana-image:latest
+        #run: docker build --no-cache -t test-image:0.1 .
                   
       - name: Prisma Cloud image scan
         id: scan
