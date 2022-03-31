@@ -1,7 +1,8 @@
 on: [ push, workflow_dispatch ]
 
 env:
-  IMAGE_NAME: ${{ github.repository }}:${{ github.sha }}
+  #IMAGE_NAME: ${{ github.repository }}:${{ github.sha }}
+  IMAGE_NAME: ./image
 
 jobs:
   build-and-scan:
@@ -13,7 +14,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build the image
-        run: docker build -f ./images/Dockerfile .
+        #run: docker build -f ./images/Dockerfile .  
+        run: docker build --no-cache -t test-image:0.1 .
                   
       - name: Prisma Cloud image scan
         id: scan
@@ -22,8 +24,8 @@ jobs:
           pcc_console_url: ${{ secrets.PCC_CONSOLE_URL }}
           pcc_user: ${{ secrets.PCC_USER }}
           pcc_pass: ${{ secrets.PCC_PASS }}
-          image_name: 24643989eba4
-          #image_name: ${{ env.IMAGE_NAME }}
+          #image_name: 24643989eba4
+          image_name: ${{ env.IMAGE_NAME }}
 
       # (Optional) for compatibility with GitHub's code scanning alerts
       - name: Upload SARIF file
