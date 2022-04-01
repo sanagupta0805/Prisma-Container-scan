@@ -2,7 +2,7 @@ on: [ push, workflow_dispatch ]
 
 env:
   #IMAGE_NAME: ${{ github.repository }}:${{ github.sha }}
-  IMAGE_NAME: ./image
+  IMAGE_NAME: sana-image
 
 jobs:
   build-and-scan:
@@ -14,7 +14,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build the image
-        run: docker build -f ./images/Dockerfile .
+        #docker build -f Dockerfile -t myimage
+        run: docker build -f ./images/Dockerfile -t sana-image .
         #run: docker build --no-cache -t test-image:0.1 .
                   
       - name: Prisma Cloud image scan
